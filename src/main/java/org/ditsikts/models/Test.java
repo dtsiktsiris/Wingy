@@ -5,7 +5,8 @@ import java.net.http.HttpResponse;
 public class Test {
     private Request request;
     private HttpResponse<String> httpResponse;
-    private Validate validate;
+    private Validations validations;
+    private long duration;
 
     public Request getRequest() {
         return request;
@@ -23,11 +24,19 @@ public class Test {
         this.httpResponse = httpResponse;
     }
 
-    public Validate getValidate() {
-        return validate;
+    public Validations getValidations() {
+        return validations;
     }
 
-    public void setValidate(Validate validate) {
-        this.validate = validate;
+    public void setValidations(Validations validate) {
+        this.validations = validate;
+    }
+
+    public long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
     }
 }

@@ -2,26 +2,24 @@ package org.ditsikts;
 
 import com.google.gson.Gson;
 import org.ditsikts.executor.Executor;
-import org.ditsikts.models.Request;
 import org.ditsikts.models.Test;
 
 public class Main {
     public static void main(String[] args) {
         String json = """
                 {
-                    
-                        request: {
-                            "method": "GET",
-                            "URL": "https://gophercoding.com",
-                            "headers": {
-                                "accept":"application/json",
-                                "accept2":"application/json2"
-                            }
-                        },
-                        validate: {
-                            statusCode: 200
+                    request: {
+                        "method": "GET",
+                        "URL": "https://gophercoding.com",
+                        "headers": {
+                            "accept":"application/json",
+                            "accept2":"application/json2"
                         }
-                    
+                    },
+                    validations: {
+                        statusCode: 201,
+                        duration: 1000
+                    }
                 }""";
 
         Gson gson = new Gson();
@@ -29,8 +27,9 @@ public class Main {
         Test t = gson.fromJson(json, Test.class);
 
         Executor executor = new Executor();
-        executor.sendRequest(t);
-        System.out.println(t.getHttpResponse().statusCode());
+        executor.re.sendRequest(t);
+        executor.ve.validate(t);
+        System.out.println(t.getValidations().getDuration());
     }
 }
 
