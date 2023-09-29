@@ -1,8 +1,11 @@
-package org.ditsikts.models;
+package org.ditsikts.jsonModels;
+
+import java.util.Map;
 
 public class Validations {
     private String statusCode;
     private long duration;
+    private Map<String,String> body;
 
     public String getStatusCode() {
         return statusCode;
@@ -18,5 +21,13 @@ public class Validations {
 
     public void setDuration(long duration) {
         this.duration = duration;
+    }
+
+    public Map<String, String> getBody() {
+        return body;
+    }
+
+    public void setBody(Map<String, String> body) {
+        this.body = body;
     }
 }

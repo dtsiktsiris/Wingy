@@ -11,4 +11,13 @@ public class Validator {
             System.out.println(" FAIL");
         }
     }
+
+    public void assertLower(long actual, long expected) {
+        System.out.print("Expect " + actual + " to be lower than " + expected);
+        if (actual < expected) {
+            System.out.println(" SUCCESS");
+        } else {
+            System.out.println(" FAIL");
+        }
+    }
 }

@@ -1,7 +1,7 @@
 package org.ditsikts.executor;
 
-import org.ditsikts.models.Request;
-import org.ditsikts.models.Test;
+import org.ditsikts.jsonModels.Request;
+import org.ditsikts.jsonModels.Test;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,6 +11,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Map;
 
 public class RequestExecutor {
 
@@ -36,10 +37,13 @@ public class RequestExecutor {
     private HttpRequest prepareHttpRequest(Request r){
         HttpRequest httpRequest;
         try {
-            httpRequest = HttpRequest.newBuilder()
+            HttpRequest.Builder builder = HttpRequest.newBuilder()
                     .uri(new URI(r.getURL()))
-                    .method(r.getMethod(), HttpRequest.BodyPublishers.noBody())
-                    .build();
+                    .method(r.getMethod(), HttpRequest.BodyPublishers.noBody());
+            for (Map.Entry<String,String> header: r.getHeaders().entrySet()) {
+                builder.header(header.getKey(), header.getValue());
+            }
+            httpRequest = builder.build();
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

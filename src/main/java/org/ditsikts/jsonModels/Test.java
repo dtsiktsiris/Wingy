@@ -1,4 +1,4 @@
-package org.ditsikts.models;
+package org.ditsikts.jsonModels;
 
 import java.net.http.HttpResponse;
 
