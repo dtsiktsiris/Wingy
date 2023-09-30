@@ -22,7 +22,7 @@ public class Main {
                         "statusCode": 201,
                         "duration": 1000,
                         "body" : {
-                            "$.[1].Title" : "Hello 2"
+                            "$.[1].Title" : "Hello 3"
                         }
                     }
                 }""";
@@ -34,10 +34,8 @@ public class Main {
         Executor executor = new Executor();
         executor.re.sendRequest(t);
         executor.ve.validate(t);
-        System.out.println(t.getValidations().getBody());
-        DocumentContext documentContext = JsonPath.parse(t.getHttpResponse().body());
-        String s = documentContext.read("$.[1].Id").toString();
-        System.out.println(s);
+//        System.out.println(t.getValidations().getBody());
+
     }
 }
 
