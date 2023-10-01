@@ -1,40 +1,75 @@
 package org.ditsikts;
 
-import com.google.gson.Gson;
-import com.jayway.jsonpath.DocumentContext;
-import com.jayway.jsonpath.JsonPath;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ditsikts.executor.Executor;
-import org.ditsikts.jsonModels.Test;
+import org.ditsikts.jsonModels.Controller;
+import org.ditsikts.jsonModels.SimpleController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         String json = """
-                {
-                    "request": {
-                        "method": "GET",
-                        "URL": "http://localhost:10000/articles",
-                        "headers": {
-                            "accept":"application/json",
-                            "accept2":"application/json2"
+                [
+                    {
+                        "@type": "simple",
+                        "test": {
+                            "request": {
+                                "method": "GET",
+                                "url": "http://localhost:10000/articles",
+                                "headers": {
+                                    "accept":"application/json",
+                                    "accept2":"application/json2"
+                                }
+                            },
+                            "validations": {
+                                "statusCode": 201,
+                                "duration": 1000,
+                                "body" : {
+                                    "$.[1].Title" : "Hello 3"
+                                }
+                            }
                         }
                     },
-                    "validations": {
-                        "statusCode": 201,
-                        "duration": 1000,
-                        "body" : {
-                            "$.[1].Title" : "Hello 3"
+                    {
+                        "@type": "while",
+                        "test": {
+                            "request": {
+                                "method": "GET",
+                                "url": "http://localhost:10000/articles",
+                                "headers": {
+                                    "accept":"application/json",
+                                    "accept2":"application/json2"
+                                }
+                            },
+                            "validations": {
+                                "statusCode": 201,
+                                "duration": 1000,
+                                "body" : {
+                                    "$.[1].Title" : "Hello 3"
+                                }
+                            }
                         }
                     }
-                }""";
+                ]""";
 
-        Gson gson = new Gson();
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        Test t = gson.fromJson(json, Test.class);
+        List<Controller> c = null;
+        try {
+            c = objectMapper.readValue(json, new TypeReference<List<Controller>>(){});
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
         Executor executor = new Executor();
-        executor.re.sendRequest(t);
-        executor.ve.validate(t);
-//        System.out.println(t.getValidations().getBody());
+        executor.re.sendRequest(c.get(0).test);
+        executor.ve.validate(c.get(0).test);
+        System.out.println(c.get(0).getClass().getSimpleName());
+        System.out.println(c.get(1).getClass().getSimpleName());
 
     }
 }
