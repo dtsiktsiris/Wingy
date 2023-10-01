@@ -1,12 +1,13 @@
 package org.ditsikts.jsonModels;
 
 import java.net.http.HttpResponse;
+import java.util.Map;
 
 public class Test {
     private Request request;
-    private HttpResponse<String> httpResponse;
+    private RequestResult requestResult;
     private Validations validations;
-    private long duration;
+    private Map<String,String> keep;
 
     public Request getRequest() {
         return request;
@@ -16,12 +17,12 @@ public class Test {
         this.request = request;
     }
 
-    public HttpResponse<String> getHttpResponse() {
-        return httpResponse;
+    public RequestResult getRequestResult() {
+        return requestResult;
     }
 
-    public void setHttpResponse(HttpResponse<String> httpResponse) {
-        this.httpResponse = httpResponse;
+    public void setRequestResult(RequestResult requestResult) {
+        this.requestResult = requestResult;
     }
 
     public Validations getValidations() {
@@ -32,11 +33,12 @@ public class Test {
         this.validations = validate;
     }
 
-    public long getDuration() {
-        return duration;
+
+    public Map<String, String> getKeep() {
+        return keep;
     }
 
-    public void setDuration(long duration) {
-        this.duration = duration;
+    public void setKeep(Map<String, String> keep) {
+        this.keep = keep;
     }
 }

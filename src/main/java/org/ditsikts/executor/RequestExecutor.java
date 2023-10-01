@@ -1,6 +1,8 @@
 package org.ditsikts.executor;
 
+import com.jayway.jsonpath.JsonPath;
 import org.ditsikts.jsonModels.Request;
+import org.ditsikts.jsonModels.RequestResult;
 import org.ditsikts.jsonModels.Test;
 
 import java.io.IOException;
@@ -15,23 +17,23 @@ import java.util.Map;
 
 public class RequestExecutor {
 
-    public void sendRequest(Test t){
+    public RequestResult sendRequest(Test t){
         HttpRequest request = prepareHttpRequest(t.getRequest());
 
         HttpResponse<String> response;
+        long difference;
         try(HttpClient httpClient = HttpClient.newHttpClient()){
 
             Instant start_time = Instant.now();
             response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             Instant end_time = Instant.now();
-            long difference = Duration.between(start_time,end_time).toMillis();
-            t.setDuration(difference);
+            difference = Duration.between(start_time,end_time).toMillis();
+
         }  catch (InterruptedException | IOException e) {
             throw new RuntimeException(e);
         }
 
-        t.setHttpResponse(response);
-//        System.out.println(response.statusCode());
+        return prepareRequestResult(response, difference);
     }
 
     private HttpRequest prepareHttpRequest(Request r){
@@ -48,5 +50,14 @@ public class RequestExecutor {
             throw new RuntimeException(e);
         }
         return httpRequest;
+    }
+
+    private RequestResult prepareRequestResult(HttpResponse<String> h, long d){
+        RequestResult rs = new RequestResult();
+        rs.setDuration(d);
+        rs.setStatusCode(h.statusCode());
+        rs.setJsonBody(JsonPath.parse(h.body()));
+
+        return rs;
     }
 }
