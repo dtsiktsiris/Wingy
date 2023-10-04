@@ -13,13 +13,17 @@ public class Main {
     public static void main(String[] args) {
         String json = """
                 {
+                    "environment": {
+                        "baseURL" : "http://localhost:10000",
+                        "article" : "1"
+                    },
                     "controllers": [
                         {
                             "@type": "simple",
                             "test": {
                                 "request": {
                                     "method": "GET",
-                                    "url": "http://localhost:10000/articles",
+                                    "url": "|#baseURL##/articles",
                                     "headers": {
                                         "accept":"application/json",
                                         "accept2":"application/json2"
@@ -73,7 +77,7 @@ public class Main {
 
         Executor executor = new Executor();
         executor.run(s);
-        System.out.println(s.getKeeper());
+        System.out.println(s.getEnvironment());
 //        System.out.println(c.get(1).getClass().getSimpleName());
 
     }

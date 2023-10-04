@@ -5,15 +5,16 @@ import org.ditsikts.jsonModels.controllers.Controller;
 import java.util.*;
 
 public class Suite {
-    Map<String,String> keeper = new HashMap<>();
+    Map<String,String> environment = new HashMap<>();
+    private
     List<Controller> controllers = new ArrayList<>();
 
-    public Map<String, String> getKeeper() {
-        return keeper;
+    public Map<String, String> getEnvironment() {
+        return environment;
     }
 
-    public void setKeeper(Map<String, String> keeper) {
-        this.keeper = keeper;
+    public void setEnvironment(Map<String, String> keeper) {
+        this.environment = keeper;
     }
 
     public List<Controller> getControllers() {

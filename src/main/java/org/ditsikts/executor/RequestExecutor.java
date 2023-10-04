@@ -4,6 +4,7 @@ import com.jayway.jsonpath.JsonPath;
 import org.ditsikts.jsonModels.Request;
 import org.ditsikts.jsonModels.RequestResult;
 import org.ditsikts.jsonModels.Test;
+import org.ditsikts.replacer.Replacer;
 
 import java.io.IOException;
 import java.net.URI;
@@ -37,6 +38,7 @@ public class RequestExecutor {
     }
 
     private HttpRequest prepareHttpRequest(Request r){
+
         HttpRequest httpRequest;
         try {
             HttpRequest.Builder builder = HttpRequest.newBuilder()

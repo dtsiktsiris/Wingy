@@ -1,10 +1,13 @@
 package org.ditsikts.jsonModels;
 
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Test {
     private Request request;
+    private List<Request> sentRequest = new ArrayList<>();
     private RequestResult requestResult;
     private Validations validations;
     private Map<String,String> keep;
@@ -40,5 +43,13 @@ public class Test {
 
     public void setKeep(Map<String, String> keep) {
         this.keep = keep;
+    }
+
+    public List<Request> getSentRequest() {
+        return sentRequest;
+    }
+
+    public void setSentRequest(List<Request> sentRequest) {
+        this.sentRequest = sentRequest;
     }
 }
