@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Replacer {
-    public String replace(String placeholders, Map<String,String> keeper){
+    public String replaceInString(String placeholders, Map<String,String> keeper){
 
         Pattern pattern = Pattern.compile("\\|#.+?##");
         Matcher matcher = pattern.matcher(placeholders);
@@ -25,5 +25,12 @@ public class Replacer {
 
         System.out.println(placeholders);
         return placeholders;
+    }
+
+    public Map<String, String> replaceInMap(Map<String, String> m, Map<String,String> keeper){
+        for (Map.Entry<String, String> entry: m.entrySet()) {
+            entry.setValue(replaceInString(entry.getValue(), keeper));
+        }
+        return m;
     }
 }

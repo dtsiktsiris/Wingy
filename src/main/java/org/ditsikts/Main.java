@@ -15,7 +15,8 @@ public class Main {
                 {
                     "environment": {
                         "baseURL" : "http://localhost:10000",
-                        "article" : "1"
+                        "article" : "1",
+                        "accept":"application/json"
                     },
                     "controllers": [
                         {
@@ -25,7 +26,7 @@ public class Main {
                                     "method": "GET",
                                     "url": "|#baseURL##/articles",
                                     "headers": {
-                                        "accept":"application/json",
+                                        "accept":"|#accept##",
                                         "accept2":"application/json2"
                                     }
                                 },

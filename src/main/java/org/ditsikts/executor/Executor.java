@@ -3,7 +3,6 @@ package org.ditsikts.executor;
 import org.ditsikts.jsonModels.Request;
 import org.ditsikts.jsonModels.RequestResult;
 import org.ditsikts.jsonModels.Suite;
-import org.ditsikts.jsonModels.controllers.Controller;
 
 public class Executor {
     public ReplaceExecutor repe = new ReplaceExecutor();
@@ -12,7 +11,7 @@ public class Executor {
     public KeepExecutor ke = new KeepExecutor();
 
     public void run(Suite s){
-        Request r =  repe.replaceRequest(s.getControllers().get(0).test.getRequest(),s.getEnvironment());
+        Request r =  repe.replaceAll(s.getControllers().get(0).test.getRequest(),s.getEnvironment());
 
 //        s.getControllers().get(0).test.getSentRequest().add(r);
         s.getControllers().get(0).test.setRequest(r);
