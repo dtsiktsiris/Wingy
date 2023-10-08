@@ -1,4 +1,4 @@
-package org.ditsikts.jsonModels;
+package org.ditsikts.models;
 
 import com.jayway.jsonpath.DocumentContext;
 

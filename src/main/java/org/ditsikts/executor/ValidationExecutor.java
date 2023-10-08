@@ -1,8 +1,6 @@
 package org.ditsikts.executor;
 
-import com.jayway.jsonpath.DocumentContext;
-import com.jayway.jsonpath.JsonPath;
-import org.ditsikts.jsonModels.Test;
+import org.ditsikts.models.Test;
 import org.ditsikts.validator.Validator;
 
 import java.util.Map;

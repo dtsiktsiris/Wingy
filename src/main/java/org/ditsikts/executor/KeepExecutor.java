@@ -1,6 +1,6 @@
 package org.ditsikts.executor;
 
-import org.ditsikts.jsonModels.Test;
+import org.ditsikts.models.Test;
 
 import java.util.Map;
 

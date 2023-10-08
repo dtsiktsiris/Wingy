@@ -1,11 +1,12 @@
-package org.ditsikts.jsonModels.controllers;
+package org.ditsikts.models.controllers;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.ditsikts.jsonModels.Test;
-import org.ditsikts.jsonModels.controllers.SimpleController;
-import org.ditsikts.jsonModels.controllers.WhileController;
+import org.ditsikts.models.RequestResult;
+import org.ditsikts.models.Test;
+
+import java.net.http.HttpRequest;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
@@ -15,4 +16,6 @@ import org.ditsikts.jsonModels.controllers.WhileController;
 )
 public abstract class Controller {
     public Test test;
+
+    public abstract void exec();
 }

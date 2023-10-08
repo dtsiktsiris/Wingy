@@ -1,6 +1,6 @@
-package org.ditsikts.jsonModels;
+package org.ditsikts.models;
 
-import org.ditsikts.jsonModels.controllers.Controller;
+import org.ditsikts.models.controllers.Controller;
 
 import java.util.*;
 

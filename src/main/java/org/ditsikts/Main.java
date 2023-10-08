@@ -1,13 +1,9 @@
 package org.ditsikts;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ditsikts.executor.Executor;
-import org.ditsikts.jsonModels.Suite;
-import org.ditsikts.jsonModels.controllers.Controller;
-
-import java.util.List;
+import org.ditsikts.models.Suite;
 
 public class Main {
     public static void main(String[] args) {

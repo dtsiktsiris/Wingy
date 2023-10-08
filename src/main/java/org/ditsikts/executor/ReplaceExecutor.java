@@ -1,6 +1,6 @@
 package org.ditsikts.executor;
 
-import org.ditsikts.jsonModels.Request;
+import org.ditsikts.models.Request;
 import org.ditsikts.replacer.Replacer;
 
 import java.util.Map;
