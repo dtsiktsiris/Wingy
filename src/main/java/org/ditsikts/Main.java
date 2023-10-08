@@ -50,10 +50,10 @@ public class Main {
                                     }
                                 },
                                 "validations": {
-                                    "statusCode": 201,
-                                    "duration": 1000,
+                                    "statusCode": 200,
+                                    "duration": 500,
                                     "body" : {
-                                        "$.[1].Title" : "Hello 3"
+                                        "$.[1].Title" : "Hello 2"
                                     }
                                 }
                             }

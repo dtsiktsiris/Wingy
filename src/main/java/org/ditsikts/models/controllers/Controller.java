@@ -7,6 +7,7 @@ import org.ditsikts.models.RequestResult;
 import org.ditsikts.models.Test;
 
 import java.net.http.HttpRequest;
+import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
@@ -17,5 +18,5 @@ import java.net.http.HttpRequest;
 public abstract class Controller {
     public Test test;
 
-    public abstract void exec();
+    public abstract void exec(Map<String, String> env);
 }

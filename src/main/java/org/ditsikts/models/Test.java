@@ -1,5 +1,7 @@
 package org.ditsikts.models;
 
+import org.ditsikts.replacer.Replacer;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -50,5 +52,39 @@ public class Test {
 
     public void setSentRequest(List<Request> sentRequest) {
         this.sentRequest = sentRequest;
+    }
+
+    public void exec(Map<String, String> env) {
+        request = replaceDynamicValues(env);
+
+        RequestResult requestResult = request.sendRequest();
+        setRequestResult(requestResult);
+
+        validations.validate(requestResult);
+
+        keepValues(env);
+    }
+
+    public void keepValues(Map<String, String> env){
+        if(keep == null) return;
+
+        for (Map.Entry<String,String> keepEntry: keep.entrySet()) {
+            env.put(keepEntry.getKey(), requestResult.getJsonBody().read(keepEntry.getValue()).toString());
+        }
+
+    }
+
+    public Request replaceDynamicValues(Map<String,String> env){
+        Replacer replacer = new Replacer();
+
+        Request updatedRequest = new Request();
+
+        updatedRequest.setURL(replacer.replaceInString(request.getURL(),env));
+        updatedRequest.setMethod(request.getMethod());
+        updatedRequest.setHeaders(request.getHeaders());
+
+        updatedRequest.setHeaders(replacer.replaceInMap(request.getHeaders(),env));
+
+        return updatedRequest;
     }
 }

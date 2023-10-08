@@ -1,5 +1,7 @@
 package org.ditsikts.models;
 
+import org.ditsikts.validator.Validator;
+
 import java.util.Map;
 
 public class Validations {
@@ -29,5 +31,26 @@ public class Validations {
 
     public void setBody(Map<String, String> body) {
         this.body = body;
+    }
+
+    public void validate(RequestResult rs){
+
+        Validator validator = new Validator();
+
+        if (statusCode != null) {
+            validator.assertEqual(String.valueOf(rs.getStatusCode()), statusCode);
+        }
+
+        if (duration != 0) {
+            validator.assertLower(rs.getDuration(), duration);
+        }
+
+        if(body != null){
+            String s;
+            for (Map.Entry<String,String> bodyValidation: body.entrySet()) {
+                s = rs.getJsonBody().read(bodyValidation.getKey()).toString();
+                validator.assertEqual(s, bodyValidation.getValue());
+            }
+        }
     }
 }
