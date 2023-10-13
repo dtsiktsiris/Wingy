@@ -13,7 +13,8 @@ import java.util.Map;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = SimpleController.class, name = "simple"),
-        @JsonSubTypes.Type(value = WhileController.class, name = "while")}
+        @JsonSubTypes.Type(value = WhileController.class, name = "while"),
+        @JsonSubTypes.Type(value = ForController.class, name = "for")}
 )
 public abstract class Controller {
     public Test test;

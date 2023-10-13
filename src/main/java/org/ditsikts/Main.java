@@ -11,7 +11,7 @@ public class Main {
                 {
                     "environment": {
                         "baseURL" : "http://localhost:10000",
-                        "article" : "1",
+                        "value" : "23",
                         "accept":"application/json"
                     },
                     "controllers": [
@@ -39,7 +39,9 @@ public class Main {
                             }
                         },
                         {
-                            "@type": "while",
+                            "@type": "for",
+                            "loop": "1to5by1",
+                            "val": "index",
                             "test": {
                                 "request": {
                                     "method": "GET",
