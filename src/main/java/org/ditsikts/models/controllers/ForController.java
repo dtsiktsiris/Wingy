@@ -11,17 +11,26 @@ public class ForController extends Controller {
     public void exec(Map<String, String> env) {
 
         if( loop.contains("to") && loop.contains("by")){
-            var splitTo = loop.split("to");
-            var splitBy = splitTo[1].split("by");
+            int[] loopValues = getFromToBy(loop);
 
-            var from = Integer.parseInt(splitTo[0]);
-            var to = Integer.parseInt(splitBy[0]);
-            var by = Integer.parseInt(splitBy[1]);
+            for (int i = loopValues[0]; i<=loopValues[1]; i+=loopValues[2]){
+                env.put(val, String.valueOf(i));
 
-            for (int i = from; i<=to; i+=by){
                 test.exec(env);
             }
         }
+    }
+
+    private int[] getFromToBy(String loop){
+        int[] loopValues = new int[3];
+        var splitTo = loop.split("to");
+        var splitBy = splitTo[1].split("by");
+
+        loopValues[0] = Integer.parseInt(splitTo[0]);
+        loopValues[1] = Integer.parseInt(splitBy[0]);
+        loopValues[2] = Integer.parseInt(splitBy[1]);
+        // [ <from>, <to>, <by>]
+        return loopValues;
     }
 
     public String getLoop() {

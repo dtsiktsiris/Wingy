@@ -40,12 +40,12 @@ public class Main {
                         },
                         {
                             "@type": "for",
-                            "loop": "1to5by1",
+                            "loop": "1to2by1",
                             "val": "index",
                             "test": {
                                 "request": {
                                     "method": "GET",
-                                    "url": "http://localhost:10000/articles",
+                                    "url": "http://localhost:10000/article/|#index##",
                                     "headers": {
                                         "accept":"application/json",
                                         "accept2":"application/json2"
@@ -55,7 +55,7 @@ public class Main {
                                     "statusCode": 200,
                                     "duration": 500,
                                     "body" : {
-                                        "$.[1].Title" : "Hello 2"
+                                        "$.Title" : "Hello 2"
                                     }
                                 }
                             }

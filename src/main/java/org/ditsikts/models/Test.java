@@ -55,9 +55,9 @@ public class Test {
     }
 
     public void exec(Map<String, String> env) {
-        request = replaceDynamicValues(env);
+        sentRequest.add(replaceDynamicValues(env));
 
-        RequestResult requestResult = request.sendRequest();
+        RequestResult requestResult = sentRequest.getLast().sendRequest();
         setRequestResult(requestResult);
 
         validations.validate(requestResult);
