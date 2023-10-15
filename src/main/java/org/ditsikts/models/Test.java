@@ -81,7 +81,6 @@ public class Test {
 
         updatedRequest.setURL(replacer.replaceInString(request.getURL(),env));
         updatedRequest.setMethod(request.getMethod());
-        updatedRequest.setHeaders(request.getHeaders());
 
         updatedRequest.setHeaders(replacer.replaceInMap(request.getHeaders(),env));
 
