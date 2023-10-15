@@ -13,7 +13,8 @@ import java.util.Map;
         @JsonSubTypes.Type(value = SimpleController.class, name = "simple"),
         @JsonSubTypes.Type(value = WhileController.class, name = "while"),
         @JsonSubTypes.Type(value = ForController.class, name = "for"),
-        @JsonSubTypes.Type(value = IteratorController.class, name = "iterator")}
+        @JsonSubTypes.Type(value = IteratorController.class, name = "iterator"),
+        @JsonSubTypes.Type(value = IfController.class, name = "if")}
 )
 public abstract class Controller {
     public Test test;
