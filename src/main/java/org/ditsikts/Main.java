@@ -30,17 +30,44 @@ public class Main {
                                     "statusCode": 201,
                                     "duration": 1000,
                                     "body" : {
-                                        "$.[1].Title" : "Hello 3"
+                                        "$.[0].Title" : "Hello 3"
                                     }
                                 },
                                 "keep": {
-                                    "title": "$.[1].Title"
+                                    "myArray": "$.[*]",
+                                    "title": "$.[0].Title"
+                                }
+                            }
+                        },
+                        {
+                            "@type": "iterator",
+                            "array": "myArray",
+                            "arrayValues": {
+                                "ida": "Id"
+                            },
+                            "test": {
+                                "request": {
+                                    "method": "GET",
+                                    "url": "http://localhost:10000/article/|#ida##",
+                                    "headers": {
+                                        "accept":"application/json",
+                                        "accept2":"application/json2"
+                                    }
+                                },
+                                "validations": {
+                                    "statusCode": 200,
+                                    "duration": 500,
+                                    "body" : {
+                                        "$.Title" : "Hello 2"
+                                    }
                                 }
                             }
                         },
                         {
                             "@type": "for",
-                            "loop": "1to2by1",
+                            "from": 1,
+                            "to": 1,
+                            "by": 1,
                             "val": "index",
                             "test": {
                                 "request": {

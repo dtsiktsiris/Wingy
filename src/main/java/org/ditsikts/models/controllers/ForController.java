@@ -4,41 +4,42 @@ import java.util.Map;
 
 public class ForController extends Controller {
 
-    private String loop;
+    private int from;
+    private int to;
+    private int by;
     private String val;
 
     @Override
     public void exec(Map<String, String> env) {
+        for (int i = from; i <= to; i += by) {
+            env.put(val, String.valueOf(i));
 
-        if( loop.contains("to") && loop.contains("by")){
-            int[] loopValues = getFromToBy(loop);
-
-            for (int i = loopValues[0]; i<=loopValues[1]; i+=loopValues[2]){
-                env.put(val, String.valueOf(i));
-
-                test.exec(env);
-            }
+            test.exec(env);
         }
     }
 
-    private int[] getFromToBy(String loop){
-        int[] loopValues = new int[3];
-        var splitTo = loop.split("to");
-        var splitBy = splitTo[1].split("by");
-
-        loopValues[0] = Integer.parseInt(splitTo[0]);
-        loopValues[1] = Integer.parseInt(splitBy[0]);
-        loopValues[2] = Integer.parseInt(splitBy[1]);
-        // [ <from>, <to>, <by>]
-        return loopValues;
+    public int getFrom() {
+        return from;
     }
 
-    public String getLoop() {
-        return loop;
+    public void setFrom(int from) {
+        this.from = from;
     }
 
-    public void setLoop(String loop) {
-        this.loop = loop;
+    public int getTo() {
+        return to;
+    }
+
+    public void setTo(int to) {
+        this.to = to;
+    }
+
+    public int getBy() {
+        return by;
+    }
+
+    public void setBy(int by) {
+        this.by = by;
     }
 
     public String getVal() {
