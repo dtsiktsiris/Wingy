@@ -39,6 +39,32 @@ public class Main {
                                 }
                             }
                         },
+                                                {
+                            "@type": "if",
+                            "lhs": "asd",
+                            "condition": "==",
+                            "rhs": "asda",
+                            "test": {
+                                "request": {
+                                    "method": "GET",
+                                    "url": "|#baseURL##/articles",
+                                    "headers": {
+                                        "accept":"|#accept##",
+                                        "accept2":"application/json2"
+                                    }
+                                },
+                                "validations": {
+                                    "statusCode": 201,
+                                    "duration": 1000,
+                                    "body" : {
+                                        "$.[0].Title" : "Hello 3"
+                                    }
+                                },
+                                "keep": {
+                                    "titleb": "$.[0].Title"
+                                }
+                            }
+                        },
                         {
                             "@type": "iterator",
                             "array": "myArray",
