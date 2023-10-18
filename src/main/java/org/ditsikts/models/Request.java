@@ -1,6 +1,7 @@
 package org.ditsikts.models;
 
 import com.jayway.jsonpath.JsonPath;
+import org.ditsikts.models.utils.RestMethod;
 
 import java.io.IOException;
 import java.net.URI;
@@ -13,15 +14,19 @@ import java.time.Instant;
 import java.util.Map;
 
 public class Request {
-    private String method;
+    private RestMethod method;
     private String URL;
     private Map<String, String> headers;
 
-    public String getMethod() {
+    public RestMethod getMethod() {
         return method;
     }
 
-    public void setMethod(String method) {
+    public String getMethodAsString() {
+        return method.name();
+    }
+
+    public void setMethod(RestMethod method) {
         this.method = method;
     }
 
@@ -66,7 +71,7 @@ public class Request {
         try {
             HttpRequest.Builder builder = HttpRequest.newBuilder()
                     .uri(new URI(getURL()))
-                    .method(getMethod(), HttpRequest.BodyPublishers.noBody());
+                    .method(getMethodAsString(), HttpRequest.BodyPublishers.noBody());
             for (Map.Entry<String,String> header: getHeaders().entrySet()) {
                 builder.header(header.getKey(), header.getValue());
             }
