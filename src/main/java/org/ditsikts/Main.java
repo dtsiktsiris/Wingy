@@ -42,8 +42,8 @@ public class Main {
                                                 {
                             "@type": "if",
                             "lhs": "asd",
-                            "condition": "==",
-                            "rhs": "asda",
+                            "condition": "EQUALS",
+                            "rhs": "asd",
                             "test": {
                                 "request": {
                                     "method": "GET",

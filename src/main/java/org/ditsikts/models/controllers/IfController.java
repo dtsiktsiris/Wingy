@@ -1,22 +1,25 @@
 package org.ditsikts.models.controllers;
 
+import org.ditsikts.models.utils.Condition;
+
 import java.util.Map;
 import java.util.Objects;
 
 public class IfController extends Controller {
     private String lhs;
-    private String condition;
+    private Condition condition;
     private String rhs;
 
     @Override
     public void exec(Map<String, String> env) {
 
-        if (Objects.equals(condition, "==")) {
-            if (lhs.equals(rhs)) {
-                test.exec(env);
+        switch (condition){
+            case EQUALS -> {
+                if ((lhs.equals(rhs))) {
+                    test.exec(env);
+                }
             }
         }
-
     }
 
     public String getLhs() {
@@ -27,11 +30,11 @@ public class IfController extends Controller {
         this.lhs = lhs;
     }
 
-    public String getCondition() {
+    public Condition getCondition() {
         return condition;
     }
 
-    public void setCondition(String condition) {
+    public void setCondition(Condition condition) {
         this.condition = condition;
     }
 
