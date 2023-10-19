@@ -1,6 +1,7 @@
 package org.ditsikts.models.controllers;
 
 import org.ditsikts.models.utils.Condition;
+import org.ditsikts.replacer.Replacer;
 
 import java.util.Map;
 import java.util.Objects;
@@ -12,6 +13,9 @@ public class IfController extends Controller {
 
     @Override
     public void exec(Map<String, String> env) {
+        Replacer replacer = new Replacer();
+        lhs = replacer.replaceInString(lhs, env);
+        rhs = replacer.replaceInString(rhs, env);
 
         switch (condition){
             case EQUALS -> {

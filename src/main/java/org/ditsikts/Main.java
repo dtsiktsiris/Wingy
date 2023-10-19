@@ -12,6 +12,7 @@ public class Main {
                     "environment": {
                         "baseURL" : "http://localhost:10000",
                         "value" : "23",
+                        "valueb" : "24",
                         "accept":"application/json"
                     },
                     "controllers": [
@@ -41,9 +42,9 @@ public class Main {
                         },
                                                 {
                             "@type": "if",
-                            "lhs": "asd",
+                            "lhs": "|#value##",
                             "condition": "EQUALS",
-                            "rhs": "asd",
+                            "rhs": "|#valueb##",
                             "test": {
                                 "request": {
                                     "method": "GET",
