@@ -11,7 +11,7 @@ public class Main {
                 {
                     "environment": {
                         "baseURL" : "http://localhost:10000",
-                        "value" : "23",
+                        "value" : "25",
                         "valueb" : "24",
                         "accept":"application/json"
                     },
@@ -42,9 +42,11 @@ public class Main {
                         },
                                                 {
                             "@type": "if",
-                            "lhs": "|#value##",
-                            "condition": "EQUALS",
-                            "rhs": "|#valueb##",
+                            "condition": {
+                                "lhs": "|#value##",
+                                "condition": "GREATER",
+                                "rhs": "|#valueb##"
+                            },
                             "test": {
                                 "request": {
                                     "method": "GET",

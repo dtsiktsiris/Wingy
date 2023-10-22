@@ -23,7 +23,7 @@ public class Replacer {
 //            System.out.println(" Found: " + matcher.group());
         }
 
-        System.out.println(placeholders);
+//        System.out.println(placeholders);
         return placeholders;
     }
 
